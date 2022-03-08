@@ -1,6 +1,6 @@
 import React, { useState, useEffect, setState } from 'react';
 import { StackActions, NavigationActions } from 'react-navigation';
-import { Alert, StatusBar, ActivityIndicator } from 'react-native';
+import { StyleSheet, Alert, StatusBar, ActivityIndicator } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PropTypes from 'prop-types';
@@ -80,9 +80,9 @@ export default function Welcome(props) {
       <StatusBar barStyle="light-content" />
       <Brand>AKSAPOS</Brand>
       <Title>Selamat Datang</Title>
-      <TextInformation>
+      {/*<TextInformation>
         Untuk melanjutkan, Anda perlu memasukkan nama pengguna Anda.
-      </TextInformation>
+      </TextInformation>*/}
 
       {/**!!errorMessage && <Error>{errorMessage}</Error>*/}
 
@@ -95,6 +95,7 @@ export default function Welcome(props) {
           underlineColorAndroid="rgba(0, 0, 0, 0)"
           value={username}
           onChangeText={username => setUsername(username)}
+          style={styles.input}
         />
 
         <TextInput
@@ -107,9 +108,10 @@ export default function Welcome(props) {
           right={<TextInput.Icon name="eye" onPress={onPressEye} />}
           value={password}
           onChangeText={password => setPassword(password)}
+          style={styles.input}
         />
 
-        <Button icon="camera" onPress={signIn} mode="contained" loading={loading}>
+        <Button icon="camera" onPress={signIn} mode="contained" loading={loading} style={styles.button}>
           Login
         </Button>
       </Form>
@@ -117,6 +119,16 @@ export default function Welcome(props) {
     </Container>
   )
 }
+
+const styles = StyleSheet.create({
+  input: {
+    marginBottom: 10,
+  },
+  button: {
+    marginTop: 5,
+    padding: 5,
+  },
+});
 
 Welcome.navigationOptions = () => {
   return {
